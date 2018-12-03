@@ -1,0 +1,24 @@
+{
+  "name": "indexeddb-my-admin-interface",
+  "version": "0.0.1",
+  "description": "Interface of IndexedDB My Admin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duduindo/indexeddb-my-admin-interface.git"
+  },
+  "keywords": [
+    "indexedDB",
+    "html",
+    "phpmyadmin"
+  ],
+  "author": "Eduardo Paixão (@duduindo)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/duduindo/indexeddb-my-admin-interface/issues"
+  },
+  "homepage": "https://github.com/duduindo/indexeddb-my-admin-interface#readme"
+}

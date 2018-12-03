@@ -4,7 +4,13 @@
   "description": "Interface of IndexedDB My Admin",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "gulp js",
+    "lint": "eslint src/js gulpfile.js --cache --ignore-path .gitignore; exit 0;",
+    "server": "gulp server",
+    "test": "jest --config jest.config.json",
+    "test:coverage": "jest --config jest.config.json --coverage",
+    "test:watch": "jest --config jest.config.json --watch",
+    "watch": "gulp watch"
   },
   "repository": {
     "type": "git",
@@ -20,5 +26,23 @@
   "bugs": {
     "url": "https://github.com/duduindo/indexeddb-my-admin-interface/issues"
   },
-  "homepage": "https://github.com/duduindo/indexeddb-my-admin-interface#readme"
+  "homepage": "https://github.com/duduindo/indexeddb-my-admin-interface#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "babel-preset-env": "^1.7.0",
+    "babelify": "^10.0.0",
+    "browser-sync": "^2.26.3",
+    "browserify": "^16.2.3",
+    "eslint": "^5.9.0",
+    "gulp": "^3.9.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-stylus": "^2.7.0",
+    "gulp-uglify": "^3.0.1",
+    "html-loader-jest": "^0.2.1",
+    "jest": "^23.6.0",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  }
 }

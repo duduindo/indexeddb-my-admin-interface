@@ -10,6 +10,7 @@ const browserSync = require('browser-sync').create();
 const stylus = require('gulp-stylus');
 const babelrc = JSON.parse(fs.readFileSync('./.babelrc'));
 
+
 gulp.task('js', () => {
   const b = browserify({
     entries: './src/js/app.js',
@@ -32,6 +33,7 @@ gulp.task('css', () => {
     .pipe(sourcemaps.init())
     .pipe(stylus({
       compress: true,
+      paths: ['node_modules/stylus-normalize', 'node_modules/bootstrap-4-stylus/includes'],
     }))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./dist/css/'));

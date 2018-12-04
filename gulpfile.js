@@ -33,7 +33,7 @@ gulp.task('css', () => {
     .pipe(sourcemaps.init())
     .pipe(stylus({
       compress: true,
-      paths: ['node_modules/stylus-normalize', 'node_modules/bootstrap-4-stylus/includes'],
+      paths: ['node_modules'],
     }))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./dist/css/'));

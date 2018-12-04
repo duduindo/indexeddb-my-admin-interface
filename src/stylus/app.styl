@@ -1,3 +1,53 @@
+*
+  background-color rgba(0,0,0, .07)
+
 body
-  background-color black
-  color yellow
+  background-color lightgrey
+  margin 0
+
+
+
+// --------------------------------------------
+// Layout
+// --------------------------------------------
+.l-container
+  display grid
+  grid-template-columns 2fr 8fr
+  grid-template-rows auto 10fr
+  grid-gap 2px
+
+.l-masthead
+  grid-column 2
+  grid-row auto
+
+.l-aside
+  grid-column 1
+  grid-row 1/3
+
+.l-main
+  grid-column 2
+  grid-row 2
+
+
+
+// --------------------------------------------
+// Components
+// --------------------------------------------
+
+
+//  hidden
+//
+.is-hidden
+  display none
+
+.is-hidden-xs
+  @media (max-width: 59em)
+    display none
+
+.is-hidden-sm
+  @media (min-width: 60em) and (max-width: 80em)
+    display none
+
+.is-hidden-md
+  @media (min-width: 80em)
+    display none

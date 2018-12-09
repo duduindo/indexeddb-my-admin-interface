@@ -1,61 +1,55 @@
 import { Component } from 'inferno';
+import { connect } from 'inferno-redux';
 
 class Expander extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+  handleClick(type) {
+    if (type === 'databases')
+      this.props.showDatabases();
 
-  componentDidMount() {
-    console.log(this.props.tree);
+    if (type === 'stores')
+      this.props.showStores();
+
+    if (type === 'indexes')
+      this.props.showIndexes();
   }
 
   render() {
-    const { databases } = this.props.tree;
-
     return (
       <div className="c-expander">
-        <ul>
-          {
-            databases.data.map(database => {
-              const { stores } = database;
-
-              return (
-                <li>
-                  <button>{ database.name }</button>
-                  <ul>
-                    {
-                      stores.data.map(store => {
-                        const { indexes } = store;
-
-                        return (
-                          <li>
-                            <button>{ store.name }</button>
-                            <ul>
-                              {
-                                indexes.data.map(index => {
-                                  return (
-                                    <li>
-                                      <button>{ index.name }</button>
-                                    </li>
-                                  );
-                                })
-                              }
-                            </ul>
-                          </li>
-                        );
-                      })
-                    }
-                  </ul>
-                </li>
-              );
-            })
-          }
-        </ul>
+        <button onClick={ this.handleClick.bind(this, 'databases') }>Show Databases</button> <br/>
+        <button onClick={ this.handleClick.bind(this, 'stores') }>Show Stores</button> <br/>
+        <button onClick={ this.handleClick.bind(this, 'indexes') }>Show Indexes</button> <br/>
       </div>
     );
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    name: state.name
+  }
+}
 
-export default Expander
+const mapDispatchToProps = dispatch => {
+  return {
+    showDatabases: () =>
+      dispatch({
+        type: 'SHOW_DATABASES',
+        name: 'Show me the databases!'
+      }),
+
+    showStores: () =>
+      dispatch({
+        type: 'SHOW_STORES',
+        name: 'Show me the stores!'
+      }),
+
+    showIndexes: () =>
+      dispatch({
+        type: 'SHOW_INDEXES',
+        name: 'Show me the indexes!'
+      })
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Expander);

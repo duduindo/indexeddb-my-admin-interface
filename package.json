@@ -50,6 +50,8 @@
   "dependencies": {
     "bootstrap-4-stylus": "^1.0.5",
     "inferno": "^7.0.2",
+    "inferno-redux": "^7.0.2",
+    "redux": "^4.0.1",
     "stylus-normalize": "^3.0.3"
   }
 }

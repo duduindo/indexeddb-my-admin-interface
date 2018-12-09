@@ -32,6 +32,7 @@
     "babel-cli": "^6.26.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
+    "babel-plugin-inferno": "^6.0.4",
     "babel-preset-env": "^1.7.0",
     "babelify": "^10.0.0",
     "browser-sync": "^2.26.3",
@@ -48,6 +49,7 @@
   },
   "dependencies": {
     "bootstrap-4-stylus": "^1.0.5",
+    "inferno": "^7.0.2",
     "stylus-normalize": "^3.0.3"
   }
 }

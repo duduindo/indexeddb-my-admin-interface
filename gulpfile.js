@@ -21,7 +21,7 @@ gulp.task('js', () => {
     .pipe(source('common.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}))
-    .pipe(uglify()).on('error', e => console.error(e))
+    //.pipe(uglify()).on('error', e => console.error(e))
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./dist/js/'));
 
@@ -39,13 +39,24 @@ gulp.task('css', () => {
     .pipe(gulp.dest('./dist/css/'));
 });
 
-gulp.task('server', ['css', 'js'], () => {
+gulp.task('css:documentation', () => {
+  gulp.src('./src/stylus/documentation.styl')
+    .pipe(sourcemaps.init())
+    .pipe(stylus({
+      compress: true,
+      paths: ['node_modules'],
+    }))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('./dist/css/'));
+});
+
+gulp.task('server', ['css:documentation', 'css', 'js'], () => {
   browserSync.init({
     port: 3001,
     server: "./",
     open: false
   });
 
-  gulp.watch(['./src/stylus/**/*.styl', './src/js/**/*.js'], ['css','js']);
-  gulp.watch(['./index.html', './dist/**/*.js']).on('change', browserSync.reload);
+  gulp.watch(['./src/stylus/**/*.styl', './src/js/**/*.js'], ['css:documentation', 'css','js']);
+  gulp.watch(['./dist/**/*.css', './dist/**/*.js', './*.html']).on('change', browserSync.reload);
 });

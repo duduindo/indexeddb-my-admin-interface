@@ -1,0 +1,53 @@
+
+// --------------------------------------------
+// Modules
+// --------------------------------------------
+// @import 'normalize'
+
+@import 'stylus-normalize/normalize'
+@import 'bootstrap-4-stylus/bootstrap'
+@import './variables'
+@import './layout'
+
+body
+  background-color #FFF
+  color $color-text
+
+
+// Component
+// --------------------------------------------
+
+// Colors
+$component-example-bg             ?= rgba(0, 0, 0, .08)
+$component-example-hint-bg        ?= #fff
+$component-example-hint-border    ?= 1px dashed blue
+$component-example-hint-color     ?= #a00
+
+// Box & Display
+$component-example-hint-padding   ?= 0 5px
+
+// Type
+$component-example-hint-font-size ?= .7em
+
+
+.c-component
+  &__example
+    background-color $component-example-bg
+
+    &:before
+      // Colors
+      background-color $component-example-hint-bg
+      border $component-example-hint-border
+      color $component-example-hint-color
+
+      // Box & Display
+      content 'Component running'
+      display block
+      float right
+      padding $component-example-hint-padding
+
+      // Type
+      font-size $component-example-hint-font-size
+
+
+

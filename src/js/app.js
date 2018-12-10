@@ -1,23 +1,24 @@
 import { render, Component } from 'inferno';
+import { HashRouter, Route } from 'inferno-router';
 import { Provider } from 'inferno-redux';
 import { createStore } from 'redux';
 import Expander from './components/expander';
 import Content from './components/content';
+import Databases from './components/databases';
 
-
-const store = createStore(function(state, action) {
+const store = createStore((state, action) => {
   switch (action.type) {
-    case 'SHOW_DATABASES':
-      return {
-        name: action.name
-      };
-
     case 'SHOW_STORES':
       return {
         name: action.name
       };
 
     case 'SHOW_INDEXES':
+      return {
+        name: action.name
+      };
+
+    case 'ADD_DATABASE':
       return {
         name: action.name
       };
@@ -40,7 +41,11 @@ render((
       </aside>
 
       <main className="l-main">
-        <Content />
+        <HashRouter>
+          <Route exact path="/" component={Databases} />
+          <Route exact path="/stores" component={Content} />
+          <Route exact path="/indexes" component={Content} />
+        </HashRouter>
       </main>
     </div>
   </Provider>

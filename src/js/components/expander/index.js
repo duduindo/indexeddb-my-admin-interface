@@ -1,5 +1,7 @@
 import { Component } from 'inferno';
+import { Link } from 'inferno-router';
 import { connect } from 'inferno-redux';
+
 
 class Expander extends Component {
   handleClick(type) {
@@ -14,9 +16,12 @@ class Expander extends Component {
   }
 
   render() {
+    const store = this.context.store;
+    const state = store.getState();
+
     return (
       <div className="c-expander">
-        <button onClick={ this.handleClick.bind(this, 'databases') }>Show Databases</button> <br/>
+
         <button onClick={ this.handleClick.bind(this, 'stores') }>Show Stores</button> <br/>
         <button onClick={ this.handleClick.bind(this, 'indexes') }>Show Indexes</button> <br/>
       </div>
@@ -32,12 +37,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    showDatabases: () =>
-      dispatch({
-        type: 'SHOW_DATABASES',
-        name: 'Show me the databases!'
-      }),
-
     showStores: () =>
       dispatch({
         type: 'SHOW_STORES',

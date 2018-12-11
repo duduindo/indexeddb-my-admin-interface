@@ -1,5 +1,7 @@
 import { Component } from 'inferno';
 import { connect } from 'inferno-redux';
+import { addDatabase } from '../../actions';
+
 
 class Databases extends Component {
   constructor(props) {
@@ -22,6 +24,11 @@ class Databases extends Component {
   }
 
   render() {
+    const store = this.context.store;
+    const state = store.getState();
+
+    console.log(state);
+
     return (
       <div className="m-5">
         <div className="container">

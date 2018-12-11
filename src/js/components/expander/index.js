@@ -1,5 +1,4 @@
 import { Component } from 'inferno';
-import { Link } from 'inferno-router';
 import { connect } from 'inferno-redux';
 
 

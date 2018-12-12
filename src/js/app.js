@@ -7,31 +7,6 @@ import Expander from './components/expander';
 import Content from './components/content';
 import Databases from './components/databases';
 
-const store = createStore((state, action) => {
-  switch (action.type) {
-    case 'SHOW_STORES':
-      return {
-        name: action.name
-      };
-
-    case 'SHOW_INDEXES':
-      return {
-        name: action.name
-      };
-
-    case 'ADD_DATABASE':
-      return {
-        name: action.name
-      };
-
-    default:
-      return {
-        name: 'TOM'
-      };
-  }
-})
-
-
 render((
   <Provider store={ configureStore() }>
     <div className="l-container">

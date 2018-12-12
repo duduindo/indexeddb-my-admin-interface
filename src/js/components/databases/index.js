@@ -1,45 +1,36 @@
 import { Component } from 'inferno';
 import { connect } from 'inferno-redux';
-import { addDatabase } from '../../actions';
+import { addDatabaseAction } from '../../actions';
 
 
 class Databases extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      databases: []
-    };
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    const input = e.target['database_name'];
-    const databases = [...this.state.databases];
+    // const input = e.target['database_name'];
+    // const databases = [...this.state.databases];
 
-    databases.push(input.value);
+    // databases.push(input.value);
 
-    this.setState({ databases });
-    this.props.addDatabase(input.value);
+    // this.setState({ databases });
+    // this.props.addDatabase(input.value);
+    this.props.addDatabase({ name: 'Teste', number: 100 });
   }
 
   render() {
     const store = this.context.store;
     const state = store.getState();
 
-    console.log(state);
+    console.log('statee redux: ', state);
 
     return (
       <div className="m-5">
         <div className="container">
           <h2 className="h5">Databases salved:</h2>
-          <ul>
-            {
-              this.state.databases.map(database => {
-                return <li><button>X</button> <button>{database}</button></li>;
-              })
-            }
-          </ul>
+          <ul></ul>
         </div>
 
         <div className="container">
@@ -56,20 +47,11 @@ class Databases extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    name: state.name
-  }
-}
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addDatabase: name =>
-      dispatch({
-        type: 'ADD_DATABASE',
-        name
-      })
-  }
-}
+const mapStateToProps = state => ({ ...state });
+
+const mapDispatchToProps = dispatch => ({
+  addDatabase: payload => dispatch(addDatabaseAction(payload)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Databases);

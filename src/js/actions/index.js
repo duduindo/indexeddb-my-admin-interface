@@ -1,8 +1,8 @@
 import {
-  addDatabase,
-} from './database';
+  addDatabaseAction,
+} from './databaseAction';
 
 
 export {
-  addDatabase,
+  addDatabaseAction,
 }

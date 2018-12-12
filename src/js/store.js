@@ -1,8 +1,13 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers';
 
+const customMiddleware = store => next => action => {
+  next(action);
+};
+
+
 function configureStore() {
-  return createStore(reducers);
+  return createStore(reducers, applyMiddleware(customMiddleware));
 }
 
 

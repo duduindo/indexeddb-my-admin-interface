@@ -3,5 +3,5 @@ import databaseReducer from './databaseReducer';
 
 
 export default combineReducers({
-  database: databaseReducer,
+  databases: databaseReducer,
 });

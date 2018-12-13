@@ -10,17 +10,17 @@ class Expander extends Component {
   }
 
   render() {
-    const { names } = this.props.databases;
+    const { list } = this.props.database;
 
     return (
       <div className='c-expander'>
         <ul className='c-expander__list'>
           {
-            names.map((name, key) => {
+            list.map((name, key) => {
               return (
                 <li key={key}>
                   <HashRouter>
-                    <Link to={{ pathname: '/content', search: `?nocache=${key}` }} onClick={ this.handleClick.bind(this, name) } replace>{name}</Link>
+                    <Link to={{ pathname: '/content' }} onClick={ this.handleClick.bind(this, name) } replace>{name}</Link>
                   </HashRouter>
                 </li>);
             })

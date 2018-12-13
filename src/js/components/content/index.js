@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 class Content extends Component {
   render() {
+    console.log(this.props);
+
     return (
       <span>Content here! { Date.now() }</span>
     );

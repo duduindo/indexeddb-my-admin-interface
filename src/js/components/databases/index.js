@@ -11,24 +11,24 @@ class Databases extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const input = e.target['database_name'];
-    const { names } = this.props.databases;
-    const joinNames = [...names, input.value];
+    const { list } = this.props.database;
+    const joinNames = [...list, input.value];
 
-    if (!names.includes(input.value)) {
-      this.props.addDatabase({ names: joinNames });
+    if (!list.includes(input.value)) {
+      this.props.addDatabase({ list: joinNames });
       input.value = '';
     }
   }
 
   handleDelete(name) {
-    let { names } = this.props.databases;
-    names = names.filter(item => (item !== name));
+    let { list } = this.props.database;
+    list = list.filter(item => (item !== name));
 
-    this.props.removeDatabase({ names });
+    this.props.removeDatabase({ list });
   }
 
   render() {
-    const { names } = this.props.databases;
+    const { list } = this.props.database;
 
     return (
       <div className="m-5">
@@ -36,7 +36,7 @@ class Databases extends Component {
           <h2 className="h5">Databases salved:</h2>
           <ul>
             {
-              names.map((name, key) => {
+              list.map((name, key) => {
                 return <li key={key}><button onClick={ this.handleDelete.bind(this, name) }>X</button> <span>{name}</span></li>;
               })
             }

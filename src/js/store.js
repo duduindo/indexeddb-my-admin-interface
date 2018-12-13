@@ -2,8 +2,8 @@ import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers';
 
 const initialState = {
-  databases: {
-    names: ['database1', 'database2', 'database3', 'database4'],
+  database: {
+    list: ['database1', 'database2', 'database3', 'database4'],
     selected: '',
   }
 };

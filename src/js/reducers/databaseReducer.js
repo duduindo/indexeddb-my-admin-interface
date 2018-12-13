@@ -1,9 +1,4 @@
-
-const initial = {
-  names: ['database1'],
-};
-
-export default (state = initial, action) => {
+export default (state = {}, action) => {
   switch (action.type) {
     case 'ADD_DATABASE':
       return { ...action.payload };

@@ -12,6 +12,7 @@ class App extends Component {
         <header className="l-masthead">header</header>
 
         <aside className="l-aside">
+          <h3>logo</h3>
           <Expander />
         </aside>
 

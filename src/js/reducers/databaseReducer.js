@@ -6,6 +6,9 @@ export default (state = {}, action) => {
     case 'REMOVE_DATABASE':
       return { ...action.payload };
 
+    case 'SHOW_DATABASE':
+      return { ...action.payload };
+
     default:
       return state;
   }

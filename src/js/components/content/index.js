@@ -2,13 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class Content extends Component {
-  componentWillUpdate(nextProps, nextState, context) {
-    console.warn(nextProps);
-  }
-
   render() {
     return (
-      <span>Content here!</span>
+      <span>Content here! { Date.now() }</span>
     );
   }
 }

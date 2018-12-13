@@ -2,12 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addDatabaseAction, removeDatabaseAction } from '../../actions';
 
+class DababaseItem extends Component {
+  render() {
+    return (
+      <li>
+        <button onClick={this.props.click}>X</button>&nbsp;<span>{this.props.name}</span>
+      </li>
+    );
+  }
+}
+
 
 class Databases extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   handleSubmit(e) {
     e.preventDefault();
     const input = e.target['database_name'];
@@ -37,7 +43,7 @@ class Databases extends Component {
           <ul>
             {
               list.map((name, key) => {
-                return <li key={key}><button onClick={ this.handleDelete.bind(this, name) }>X</button> <span>{name}</span></li>;
+                return <DababaseItem key={key} name={name} click={ this.handleDelete.bind(this, name) } />;
               })
             }
           </ul>

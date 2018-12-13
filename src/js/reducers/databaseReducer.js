@@ -8,7 +8,7 @@ export default (state = initial, action) => {
     case 'ADD_DATABASE':
       return { ...action.payload };
 
-    case 'DELETE_DATABASE':
+    case 'REMOVE_DATABASE':
       return { ...action.payload };
 
     default:

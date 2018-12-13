@@ -13,7 +13,7 @@ const babelrc = JSON.parse(fs.readFileSync('./.babelrc'));
 
 gulp.task('js', () => {
   const b = browserify({
-    entries: './src/js/app.js',
+    entries: './src/js/index.js',
     extensions: ['.js'],
   })
     .transform(babelify, babelrc)

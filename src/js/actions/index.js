@@ -1,10 +1,10 @@
 import {
   addDatabaseAction,
-  deleteDatabaseAction,
+  removeDatabaseAction,
 } from './databaseAction';
 
 
 export {
   addDatabaseAction,
-  deleteDatabaseAction,
+  removeDatabaseAction,
 }

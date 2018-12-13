@@ -3,7 +3,7 @@ export const addDatabaseAction = payload => ({
   payload,
 });
 
-export const deleteDatabaseAction = payload => ({
-  type: 'DELETE_DATABASE',
+export const removeDatabaseAction = payload => ({
+  type: 'REMOVE_DATABASE',
   payload,
 });

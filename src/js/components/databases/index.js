@@ -1,6 +1,6 @@
-import { Component } from 'inferno';
-import { connect } from 'inferno-redux';
-import { addDatabaseAction, deleteDatabaseAction } from '../../actions';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addDatabaseAction, removeDatabaseAction } from '../../actions';
 
 
 class Databases extends Component {
@@ -8,7 +8,7 @@ class Databases extends Component {
     super(props);
   }
 
-  handleAdd(e) {
+  handleSubmit(e) {
     e.preventDefault();
     const input = e.target['database_name'];
     const { names } = this.props.databases;
@@ -24,12 +24,11 @@ class Databases extends Component {
     let { names } = this.props.databases;
     names = names.filter(item => (item !== name));
 
-    this.props.deleteDatabase({ names });
+    this.props.removeDatabase({ names });
   }
 
   render() {
-    const state = this.context.store.getState();
-    const { names } = state.databases;
+    const { names } = this.props.databases;
 
     return (
       <div className="m-5">
@@ -37,8 +36,8 @@ class Databases extends Component {
           <h2 className="h5">Databases salved:</h2>
           <ul>
             {
-              names.map(name => {
-                return <li><button onClick={ this.handleDelete.bind(this, name) }>X</button> <span>{name}</span></li>;
+              names.map((name, key) => {
+                return <li key={key}><button onClick={ this.handleDelete.bind(this, name) }>X</button> <span>{name}</span></li>;
               })
             }
           </ul>
@@ -46,9 +45,9 @@ class Databases extends Component {
 
         <div className="container">
           <h2 className="h5">Add databases:</h2>
-          <form action="." onSubmit={ this.handleAdd.bind(this) } >
+          <form action="." onSubmit={ this.handleSubmit.bind(this) } >
             <fieldset>
-              <input minlength="1" type="text" name="database_name" required/>
+              <input minLength="1" type="text" name="database_name" required/>
               <button>Add</button>
             </fieldset>
           </form>
@@ -63,7 +62,7 @@ const mapStateToProps = state => (state);
 
 const mapDispatchToProps = dispatch => ({
   addDatabase: payload => dispatch(addDatabaseAction(payload)),
-  deleteDatabase: payload => dispatch(deleteDatabaseAction(payload)),
+  removeDatabase: payload => dispatch(removeDatabaseAction(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Databases);

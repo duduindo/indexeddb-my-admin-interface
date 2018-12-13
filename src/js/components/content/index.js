@@ -1,5 +1,5 @@
-import { Component } from 'inferno';
-import { connect } from 'inferno-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Content extends Component {
   componentWillUpdate(nextProps, nextState, context) {
@@ -7,20 +7,13 @@ class Content extends Component {
   }
 
   render() {
-    const store = this.context.store;
-    const state = store.getState();
-
     return (
-      <span>{ state.name }</span>
+      <span>Content here!</span>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    name: state.name
-  }
-}
+const mapStateToProps = state => (state);
+const mapDispatchToProps = dispatch => ({});
 
-
-export default connect(mapStateToProps)(Content);
+export default connect(mapStateToProps, mapDispatchToProps)(Content);

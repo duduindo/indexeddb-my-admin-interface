@@ -1,14 +1,8 @@
-import { createStore, applyMiddleware } from 'redux';
-import reducers from './reducers';
-
-const customMiddleware = store => next => action => {
-  next(action);
-};
-
+import { createStore } from 'redux';
+import reducer from './reducers';
 
 function configureStore() {
-  return createStore(reducers, applyMiddleware(customMiddleware));
+  return createStore(reducer);
 }
 
-
-export default configureStore;
+export { configureStore };

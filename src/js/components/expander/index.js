@@ -1,19 +1,17 @@
-import { Component } from 'inferno';
-import { connect } from 'inferno-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 
 class Expander extends Component {
   render() {
-    const state = this.context.store.getState();
-    const { names } = state.databases;
-
+    const { names } = this.props.databases;
 
     return (
       <div className="c-expander">
         <ul className="c-expander__list">
           {
-            names.map(name => {
-              return <li><span>{name}</span></li>;
+            names.map((name, key) => {
+              return <li key={key}><span>{name}</span></li>;
             })
           }
         </ul>
@@ -24,6 +22,6 @@ class Expander extends Component {
 
 const mapStateToProps = state => (state);
 
-const mapDispatchToProps = dispatch => ({  });
+const mapDispatchToProps = dispatch => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Expander);

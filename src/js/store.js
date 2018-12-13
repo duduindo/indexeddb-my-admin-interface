@@ -4,11 +4,16 @@ import rootReducer from './reducers';
 const initialState = {
   databases: {
     names: ['database1', 'database2', 'database3', 'database4'],
+    selected: '',
   }
 };
 
 
-const nullMiddleware = () => next => action => next(action ? action : { type: 'UNKNOWN' });
+const nullMiddleware = () => next => action => {
+  console.info('Middleware: ', action);
+
+  next(action ? action : { type: 'UNKNOWN' });
+};
 
 
 function configureStore() {

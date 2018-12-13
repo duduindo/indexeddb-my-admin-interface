@@ -5,6 +5,10 @@ import { showDatabaseAction } from '../../actions';
 
 
 class Expander extends Component {
+  handleClick(nameDatabase) {
+    this.props.showDatabase({ selected: nameDatabase });
+  }
+
   render() {
     const { names } = this.props.databases;
 
@@ -16,7 +20,7 @@ class Expander extends Component {
               return (
                 <li key={key}>
                   <HashRouter>
-                    <Link to={{ pathname: '/content', search: `?database=database${key}` }} replace>{name}</Link>
+                    <Link to={{ pathname: '/content', search: `?nocache=${key}` }} onClick={ this.handleClick.bind(this, name) } replace>{name}</Link>
                   </HashRouter>
                 </li>);
             })

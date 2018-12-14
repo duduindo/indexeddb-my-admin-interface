@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
-import rootReducer from './reducers';
+import { persistStore } from 'redux-persist';
+import rootReducer from './reducers/root';
 
 const initialState = {
   database: {
@@ -16,9 +17,8 @@ const nullMiddleware = () => next => action => {
 };
 
 
-function configureStore() {
-  return createStore(rootReducer, initialState, applyMiddleware(nullMiddleware));
-}
+const store = createStore(rootReducer, initialState, applyMiddleware(nullMiddleware));
+const persistor = persistStore(store);
 
 
-export { configureStore };
+export { store, persistor };

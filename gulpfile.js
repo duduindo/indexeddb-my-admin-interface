@@ -11,8 +11,8 @@ const stylus = require('gulp-stylus');
 const babelrc = JSON.parse(fs.readFileSync('./.babelrc'));
 
 
-gulp.task('js', () => {
-  const b = browserify({
+gulp.task('js', () =>
+  browserify({
     entries: './src/js/index.js',
     extensions: ['.js'],
   })
@@ -23,12 +23,10 @@ gulp.task('js', () => {
     .pipe(sourcemaps.init({loadMaps: true}))
     //.pipe(uglify()).on('error', e => console.error(e))
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('./dist/js/'));
+    .pipe(gulp.dest('./dist/js/')));
 
-  return b;
-});
 
-gulp.task('css', () => {
+gulp.task('css', () =>
   gulp.src('./src/stylus/app.styl')
     .pipe(sourcemaps.init())
     .pipe(stylus({
@@ -36,10 +34,10 @@ gulp.task('css', () => {
       paths: ['node_modules'],
     }))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('./dist/css/'));
-});
+    .pipe(gulp.dest('./dist/css/')));
 
-gulp.task('css:documentation', () => {
+
+gulp.task('css:documentation', () =>
   gulp.src('./src/stylus/documentation.styl')
     .pipe(sourcemaps.init())
     .pipe(stylus({
@@ -47,16 +45,17 @@ gulp.task('css:documentation', () => {
       paths: ['node_modules'],
     }))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('./dist/css/'));
-});
+    .pipe(gulp.dest('./dist/css/')));
 
-gulp.task('server', ['css:documentation', 'css', 'js'], () => {
+
+gulp.task('server', [], () => {
   browserSync.init({
     port: 3001,
     server: "./",
     open: false
   });
 
-  gulp.watch(['./src/stylus/**/*.styl', './src/js/**/*.js'], ['css:documentation', 'css','js']);
+  gulp.watch(['./src/stylus/**/*.styl'], ['css']);
+  gulp.watch(['./src/js/**/*.js'], ['js']);
   gulp.watch(['./dist/**/*.css', './dist/**/*.js', './*.html']).on('change', browserSync.reload);
 });

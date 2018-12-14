@@ -1,13 +1,25 @@
+import * as actions from '../actions/actionsType';
+
+
 export default (state = {}, action) => {
   switch (action.type) {
-    case 'ADD_DATABASE':
-      return { ...state, ...action.payload };
+    case actions.ADD_DATABASE:
+      return {
+        ...state,
+        list: [...state.list, action.payload.name],
+      };
 
-    case 'REMOVE_DATABASE':
-      return { ...state, ...action.payload };
+    case actions.REMOVE_DATABASE:
+      return {
+        ...state,
+        list: state.list.filter(database => (database !== action.payload.name)),
+      };
 
-    case 'SHOW_DATABASE':
-      return { ...state, ...action.payload };
+    case actions.SHOW_DATABASE:
+      return {
+        ...state,
+        selected: action.payload.name,
+      };
 
     default:
       return state;

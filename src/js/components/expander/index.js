@@ -6,7 +6,7 @@ import { showDatabaseAction } from '../../actions';
 
 class Expander extends Component {
   handleClick(nameDatabase) {
-    this.props.showDatabase({ selected: nameDatabase });
+    this.props.showDatabase(nameDatabase);
   }
 
   render() {
@@ -34,7 +34,7 @@ class Expander extends Component {
 const mapStateToProps = state => (state);
 
 const mapDispatchToProps = dispatch => ({
-  showDatabase: payload => dispatch(showDatabaseAction(payload)),
+  showDatabase: name => dispatch(showDatabaseAction(name)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Expander);

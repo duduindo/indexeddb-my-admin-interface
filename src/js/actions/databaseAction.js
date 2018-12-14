@@ -1,14 +1,16 @@
-export const addDatabaseAction = payload => ({
-  type: 'ADD_DATABASE',
-  payload,
+import * as actions from './actionsType';
+
+export const addDatabaseAction = name => ({
+  type: actions.ADD_DATABASE,
+  payload: { name },
 });
 
-export const removeDatabaseAction = payload => ({
-  type: 'REMOVE_DATABASE',
-  payload,
+export const removeDatabaseAction = name => ({
+  type: actions.REMOVE_DATABASE,
+  payload: { name },
 });
 
-export const showDatabaseAction = payload => ({
-  type: 'SHOW_DATABASE',
-  payload,
+export const showDatabaseAction = name => ({
+  type: actions.SHOW_DATABASE,
+  payload: { name },
 });

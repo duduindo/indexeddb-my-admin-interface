@@ -17,20 +17,17 @@ class Databases extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const input = e.target['database_name'];
+    const name = input.value;
     const { list } = this.props.database;
-    const joinNames = [...list, input.value];
 
-    if (!list.includes(input.value)) {
-      this.props.addDatabase({ list: joinNames });
+    if (!list.includes(name)) {
+      this.props.addDatabase( name );
       input.value = '';
     }
   }
 
   handleDelete(name) {
-    let { list } = this.props.database;
-    list = list.filter(item => (item !== name));
-
-    this.props.removeDatabase({ list });
+    this.props.removeDatabase(name);
   }
 
   render() {
@@ -67,8 +64,8 @@ class Databases extends Component {
 const mapStateToProps = state => (state);
 
 const mapDispatchToProps = dispatch => ({
-  addDatabase: payload => dispatch(addDatabaseAction(payload)),
-  removeDatabase: payload => dispatch(removeDatabaseAction(payload)),
+  addDatabase: name => dispatch(addDatabaseAction(name)),
+  removeDatabase: name => dispatch(removeDatabaseAction(name)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Databases);

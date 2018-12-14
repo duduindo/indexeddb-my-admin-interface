@@ -12,3 +12,11 @@ export const showDatabaseAction = payload => ({
   type: 'SHOW_DATABASE',
   payload,
 });
+
+export const fetchItemsAction = (item = 1, setItems) => ({
+  type: 'API',
+  payload: {
+    url: `http://5826ed963900d612000138bd.mockapi.io/items?item=${item}`,
+    onSuccess: setItems,
+  }
+});

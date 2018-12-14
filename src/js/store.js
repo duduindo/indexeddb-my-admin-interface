@@ -17,7 +17,24 @@ const nullMiddleware = () => next => action => {
 };
 
 
-const store = createStore(rootReducer, initialState, applyMiddleware(nullMiddleware));
+const apiMiddleware = ({ dispatch }) => next => action => {
+  next(action);
+
+  if (action.type !== 'API') {
+    return;
+  }
+
+  console.warn('API', action.payload);
+
+  const { url, onSuccess } = action.payload;
+
+  fetch(url)
+    .then(res => (res.json()))
+    .then(data => dispatch(onSuccess(data)));
+};
+
+
+const store = createStore(rootReducer, initialState, applyMiddleware(nullMiddleware, apiMiddleware));
 const persistor = persistStore(store);
 
 

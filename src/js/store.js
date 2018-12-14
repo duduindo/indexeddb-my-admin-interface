@@ -6,7 +6,9 @@ const initialState = {
   database: {
     list: ['database1', 'database2', 'database3', 'database4'],
     selected: '',
-  }
+  },
+
+  items: [],
 };
 
 

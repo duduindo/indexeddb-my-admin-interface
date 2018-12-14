@@ -8,10 +8,13 @@ class Content extends Component {
   }
 
   handleClick() {
-    this.props.fetchItems(200, data => this.handleFetch(data));
+    this.props.fetchItems(200);
   }
 
   render() {
+    console.log(this.props);
+
+
     return (
       <span onClick={ this.handleClick.bind(this) }>Content here! { Date.now() }</span>
     );
@@ -21,7 +24,7 @@ class Content extends Component {
 const mapStateToProps = state => (state);
 
 const mapDispatchToProps = dispatch => ({
-  fetchItems: (item, callback) => dispatch(fetchItemsAction(item, callback)),
+  fetchItems: item => dispatch(fetchItemsAction(item)),
 });
 
 

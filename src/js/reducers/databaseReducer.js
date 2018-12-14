@@ -9,6 +9,9 @@ export default (state = {}, action) => {
     case 'SHOW_DATABASE':
       return { ...state, ...action.payload };
 
+    case 'SET_ITEMS':
+      return { ...state, ...action.payload };
+
     default:
       return state;
   }

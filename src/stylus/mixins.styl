@@ -1,0 +1,13 @@
+// ======================
+// Functions/Mixins
+// ======================
+
+
+// ======================
+// percentToRem
+// ======================
+percentToRem(percent)
+  base = $base-rem * 100
+  calc = unit(percentage(percent / base) / base, rem)
+  calc
+

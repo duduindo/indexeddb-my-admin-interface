@@ -3,30 +3,33 @@ import { HashRouter, Route } from 'react-router-dom';
 import Databases from './components/databases';
 import Expander from './components/expander';
 import Content from './components/content';
-
+import Header from './components/header';
+import Filter from './components/filter';
 
 class App extends Component {
   render() {
     return (
-      <div className="l-container">
-        <header className="l-masthead">header</header>
+      <HashRouter>
+        <div className="l-container">
+          <aside className="l-aside">
+            <h3>logo</h3>
+            <Expander />
+          </aside>
 
-        <aside className="l-aside">
-          <h3>logo</h3>
-          <Expander />
-        </aside>
+          <header className="l-masthead">
+            <Header />
+            <Filter />
+          </header>
 
-        <main className="l-main">
-          <HashRouter>
-            <div>
-              <Route exact path="/" component={Databases} />
-              <Route path="/content" component={Content} />
-            </div>
-          </HashRouter>
-        </main>
-      </div>
+          <main className="l-main">
+            <Route exact path="/" component={Databases} />
+            <Route path="/content" component={Content} />
+          </main>
+        </div>
+      </HashRouter>
     );
   }
 }
 
 export default App;
+

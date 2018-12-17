@@ -19,9 +19,7 @@ class Expander extends Component {
             list.map((name, key) => {
               return (
                 <li key={key}>
-                  <HashRouter>
-                    <Link to={{ pathname: '/content' }} onClick={ this.handleClick.bind(this, name) } replace>{name}</Link>
-                  </HashRouter>
+                  <Link to={{ pathname: '/content' }} onClick={ this.handleClick.bind(this, name) } replace>{name}</Link>
                 </li>);
             })
           }

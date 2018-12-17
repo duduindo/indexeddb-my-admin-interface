@@ -5,7 +5,7 @@ class Header extends Component {
     return (
       <div>
         <nav aria-label="breadcrumb">
-          <ol className="breadcrumb small">
+          <ol className="breadcrumb small mb-0">
             <li className="breadcrumb-item"><a href="#">Home</a></li>
             <li className="breadcrumb-item"><a href="#">Library</a></li>
             <li className="breadcrumb-item active" aria-current="page">Data</li>
@@ -13,12 +13,12 @@ class Header extends Component {
         </nav>
 
         <nav>
-          <ul className="nav mb-3">
+          <ul className="nav mb-3 small nav-bar">
             <li className="nav-item">
-              <a className="nav-link active" href="#"><b>Active</b></a>
+              <a className="nav-link" href="#"><b>Active</b></a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#"><b>Link</b></a>
+              <a className="nav-link active" href="#"><b>Link</b></a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#"><b>Link</b></a>
@@ -29,8 +29,8 @@ class Header extends Component {
           </ul>
         </nav>
 
-        <div>
-          <div className="alert alert-success mb-0" role="alert">
+        <div className="alert-panel">
+          <div className="alert alert-success small mb-0" role="alert">
             Showing rows 0 - 24 (29 total, Query took 0.0006 seconds.)
           </div>
 

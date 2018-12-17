@@ -1,14 +1,19 @@
+'use strict';
+
 const fs = require('fs');
 const browserify = require('browserify');
 const gulp = require('gulp');
+const sass = require('gulp-sass');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
 const uglify = require('gulp-uglify');
 const sourcemaps = require('gulp-sourcemaps');
 const babelify = require('babelify');
 const browserSync = require('browser-sync').create();
-const stylus = require('gulp-stylus');
 const babelrc = JSON.parse(fs.readFileSync('./.babelrc'));
+
+
+sass.compiler = require('node-sass');
 
 
 gulp.task('js', () =>
@@ -18,7 +23,7 @@ gulp.task('js', () =>
   })
     .transform(babelify, babelrc)
     .bundle()
-    .pipe(source('common.js'))
+    .pipe(source('index.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}))
     //.pipe(uglify()).on('error', e => console.error(e))
@@ -27,26 +32,14 @@ gulp.task('js', () =>
 
 
 gulp.task('css', () =>
-  gulp.src('./src/stylus/app.styl')
+  gulp.src('./src/sass/index.sass')
     .pipe(sourcemaps.init())
-    .pipe(stylus({
-      compress: false,
-      paths: ['node_modules'],
-    }))
-    .pipe(sourcemaps.write('.'))
+    .pipe(sass({
+      includePaths: ['./node_modules/bootstrap/scss/']
+    }).on('error', sass.logError))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('./dist/css/'))
     .pipe(browserSync.stream()));
-
-
-gulp.task('css:documentation', () =>
-  gulp.src('./src/stylus/documentation.styl')
-    .pipe(sourcemaps.init())
-    .pipe(stylus({
-      compress: true,
-      paths: ['node_modules'],
-    }))
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('./dist/css/')));
 
 
 gulp.task('server', ['css', 'js'], () => {
@@ -56,7 +49,7 @@ gulp.task('server', ['css', 'js'], () => {
     open: false,
     files: [
       {
-        match: ['./src/stylus/**', './src/js/**'],
+        match: ['./src/sass/**', './src/js/**'],
         fn: function(event) {
           if (event === 'add')
             this.reload();
@@ -65,7 +58,7 @@ gulp.task('server', ['css', 'js'], () => {
     ]
   });
 
-  gulp.watch(['./src/stylus/**/*.styl'], ['css']);
+  gulp.watch(['./src/sass/**/*.sass'], ['css']);
   gulp.watch(['./src/js/**/*.js'], ['js']);
   gulp.watch(['./dist/**/*.js', './*.html']).on('change', browserSync.reload);
 });

@@ -22,7 +22,7 @@ class App extends Component {
           </header>
 
           <main className="l-main">
-            <Route exact path="/" component={Databases} />
+            <Route exact path="/databases" component={Databases} />
             <Route path="/content" component={Content} />
           </main>
         </div>

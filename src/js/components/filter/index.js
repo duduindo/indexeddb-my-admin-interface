@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Filter extends Component {
   render() {
     return (
-      <div className="filter indexedbd p-3">
+      <div className="filter p-3">
         <nav aria-controls="HERE THE ID OF FILTER MAIN">
           <form action="#">
             <div className="form-row align-items-center">
@@ -29,7 +29,7 @@ class Filter extends Component {
               <div className="col-auto">
                 <fieldset>
                   <div className="form-check m-1">
-                    <input className="form-check-input" type="checkbox" id="filter-show-all" style={{ marginLeft: 0 }} />
+                    <input className="form-check-input" type="checkbox" id="filter-show-all" />
                     <label className="form-check-label" htmlFor="filter-show-all">Show all</label>
                   </div>
                 </fieldset>

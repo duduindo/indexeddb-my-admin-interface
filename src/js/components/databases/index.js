@@ -34,30 +34,40 @@ class Databases extends Component {
   }
 
   render() {
-    const { list } = this.props.database;
+    //const { list } = this.props.database;
 
     return (
-      <div className="m-5">
-        <div className="container">
-          <h2 className="h5">Databases salved:</h2>
-          <ul>
-            {
-              list.map((name, key) => {
-                return <DababaseItem key={key} name={name} click={ this.handleDelete.bind(this, name) } />;
-              })
-            }
-          </ul>
-        </div>
-
-        <div className="container">
-          <h2 className="h5">Add databases:</h2>
-          <form action="." onSubmit={ this.handleSubmit.bind(this) } >
-            <fieldset>
-              <input minLength="1" type="text" name="database_name" required/>
-              <button>Add</button>
-            </fieldset>
-          </form>
-        </div>
+      <div>
+        <table className="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Handle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Larry</td>
+              <td>the Bird</td>
+              <td>@twitter</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     );
   }

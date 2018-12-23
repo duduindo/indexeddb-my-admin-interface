@@ -1,7 +1,7 @@
 
-// ---------------------
+// ------------------------------------------
 // Bootstrap
-// ---------------------
+// ------------------------------------------
 
 // Types
 $font-family-base: sans-serif
@@ -16,16 +16,36 @@ $breadcrumb-padding-y:     .20rem
 $breadcrumb-divider-color: #fff
 $breadcrumb-active-color:  #fff
 
+// Table
+$table-cell-padding-sm: .1rem
 
-// ---------------------
+
+
+// ------------------------------------------
 // Settings of app
+// ------------------------------------------
+
+// Variables
 // ---------------------
 
 // Color
-$gray-350: #dcdcdc
-$gray-450: #ccc
-
+$white: #fff !default
+$gray-350: #dcdcdc !default
+$gray-450: #ccc !default
+$linear-gradient-bg: linear-gradient($white, $gray-350) !default //#dcdcdc
 
 //  Alert
-$alert-panel-margin-top: - .20rem
+$alert-panel-margin-top: - .20rem !default
 
+//  Table
+$table-phpmyadmin-cell-padding-sm: $table-cell-padding-sm + .2rem !default
+
+
+// Extends
+// ---------------------
+%bg-phpmyadmin
+  background: $linear-gradient-bg
+
+%text-phpmyadmin
+  color: #235a81
+  text-shadow: 0 1px 0 $white

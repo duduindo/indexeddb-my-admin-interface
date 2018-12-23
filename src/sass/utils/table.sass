@@ -1,0 +1,23 @@
+// ---------------------
+// Component Table
+// ---------------------
+
+
+
+.table-phpmyadmin
+  thead,
+  tfoot
+    @extend %bg-phpmyadmin
+
+    td, th
+      border-right: 2px solid $white
+
+    th:first-child
+      padding-left: $table-phpmyadmin-cell-padding-sm
+
+  thead
+    @extend %text-phpmyadmin
+
+  tbody
+    td
+      padding: $table-phpmyadmin-cell-padding-sm

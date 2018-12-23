@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { HashRouter, Route } from 'react-router-dom';
+import Content from './components/content';
 import Databases from './components/databases';
 import Expander from './components/expander';
-import Content from './components/content';
-import Header from './components/header';
 import Filter from './components/filter';
+import Header from './components/header';
+import StatusResults from './components/statusResults';
+
 
 class App extends Component {
   render() {
@@ -17,8 +19,9 @@ class App extends Component {
           </aside>
 
           <header className="l-masthead">
-            <Header />
-            <Filter />
+            <Route component={Header} />
+            <Route path="/content" component={Filter} />
+            <Route path="/content" component={StatusResults} />
           </header>
 
           <main className="l-main">

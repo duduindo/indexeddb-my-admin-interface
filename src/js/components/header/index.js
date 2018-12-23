@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 
 class Header extends Component {
+  getLinkActive(pathname) {
+    const { location } = this.props;
+    const isLinkActive = location.pathname.includes(pathname);
+
+    return (isLinkActive) ? 'nav-link active' : 'nav-link';
+  }
+
   render() {
     return (
       <div>
@@ -15,10 +24,12 @@ class Header extends Component {
         <nav>
           <ul className="nav mb-3 small nav-bar">
             <li className="nav-item">
-              <a className="nav-link" href="#"><b>Active</b></a>
+              <Link to={{ pathname: '/databases' }} className={ this.getLinkActive('databases') } replace>
+                <b>Databases</b>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link active" href="#"><b>Link</b></a>
+              <a className="nav-link" href="#"><b>Link</b></a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#"><b>Link</b></a>
@@ -28,18 +39,6 @@ class Header extends Component {
             </li>
           </ul>
         </nav>
-
-        <div className="alert-panel">
-          <div className="alert alert-success small mb-0" role="alert">
-            Showing rows 0 - 24 (29 total, Query took 0.0006 seconds.)
-          </div>
-
-          <div className="alert alert-secondary mb-0" role="alert">
-            <code>
-              SELECT * FROM `columns_priv`
-            </code>
-          </div>
-        </div>
       </div>
     );
   }

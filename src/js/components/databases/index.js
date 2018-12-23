@@ -5,70 +5,69 @@ import { addDatabaseAction, removeDatabaseAction } from '../../actions';
 class DababaseItem extends Component {
   render() {
     return (
-      <li>
-        <button onClick={this.props.click}>X</button>&nbsp;<span>{this.props.name}</span>
-      </li>
+      <tr>
+        <td><input type="checkbox"/></td>
+        <th scope="row">{this.props.id}</th>
+        <td>{this.props.name}</td>
+        <td>2</td>
+        <td>
+          <button className="small" onClick={this.props.makeCopy}>Copy</button> &nbsp;
+          <button className="small" onClick={this.props.makeDelete}>Delete</button>
+        </td>
+      </tr>
     );
   }
 }
 
 
 class Databases extends Component {
-  handleSubmit(e) {
-    e.preventDefault();
-    const input = e.target['database_name'];
-    const { list } = this.props.database;
-    const joinNames = [...list, input.value];
-
-    if (!list.includes(input.value)) {
-      this.props.addDatabase({ list: joinNames });
-      input.value = '';
-    }
-  }
-
   handleDelete(name) {
+    const confirm = window.confirm('Are you sure?');
     let { list } = this.props.database;
     list = list.filter(item => (item !== name));
 
-    this.props.removeDatabase({ list });
+    if (confirm)
+      this.props.removeDatabase({ list });
   }
 
+  handleCopy(name) {}
+
   render() {
-    //const { list } = this.props.database;
+    const { list } = this.props.database;
 
     return (
-      <div>
-        <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <table className="table table-sm table-phpmyadmin small">
+        <thead>
+          <tr>
+            <th scope="col"><input type="checkbox" title="Select all"/></th>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Version</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            list.map((name, key) => {
+              return (
+                <DababaseItem
+                  key={key}
+                  id={key}
+                  name={name}
+                  makeCopy={ this.handleCopy.bind(this, name) }
+                  makeDelete={ this.handleDelete.bind(this, name) }
+                />
+              );
+            })
+          }
+        </tbody>
+        <tfoot>
+          <tr>
+            <td></td>
+            <td colSpan="4"><strong>Total: { list.length }</strong></td>
+          </tr>
+        </tfoot>
+      </table>
     );
   }
 }
@@ -82,3 +81,5 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Databases);
+
+

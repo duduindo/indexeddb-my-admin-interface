@@ -6,18 +6,14 @@
 //
 // Style PHPMyAdmin
 .nav-bar
-  background: linear-gradient($white, $gray-350) //#dcdcdc
+  @extend %bg-phpmyadmin
 
   .nav-item + .nav-item
     border-right: 1px solid $white
     border-left: 1px solid $gray-450
 
   .nav-link
-    // Color
-    color: #235a81
-
-    // Type
-    text-shadow: 0 1px 0 $white
+    @extend %text-phpmyadmin
 
     &.active
       background-color: $white

@@ -9,7 +9,7 @@ import databaseReducer from './databaseReducer';
 const config = {
   key: 'root',
   storage,
-  whitelist: ['database'],
+  whitelist: [], // ['database']
 };
 
 export default persistCombineReducers(config, {

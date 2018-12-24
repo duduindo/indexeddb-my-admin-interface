@@ -16,10 +16,16 @@ class Expander extends Component {
       <div className='c-expander'>
         <ul className='c-expander__list'>
           {
-            list.map((name, key) => {
+            list.map((database, key) => {
               return (
                 <li key={key}>
-                  <Link to={{ pathname: '/content' }} onClick={ this.handleClick.bind(this, name) } replace>{name}</Link>
+                  <Link
+                    to={{ pathname: '/content' }}
+                    onClick={ this.handleClick.bind(this, database.name) }
+                    replace
+                  >
+                    {database.name}
+                  </Link>
                 </li>);
             })
           }

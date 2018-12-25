@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import { HashRouter, Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { showDatabaseAction } from '../../actions';
+import { Link } from 'react-router-dom';
+import AppContext from '../../AppContext';
+//import DatabaseContext from '../../contexts/databaseContext';
 
 
 class Expander extends Component {
-  handleClick(nameDatabase) {
-    this.props.showDatabase({ selected: nameDatabase });
-  }
+  static contextType = AppContext;
 
   render() {
-    const { list } = this.props.database;
+    //const list = [{name: 'database 1', version: 2}];
+    const { list } = this.context.store.database;
+    const { addDatabase } = this.context.actions;
 
     return (
       <div className='c-expander'>
@@ -21,7 +21,7 @@ class Expander extends Component {
                 <li key={key}>
                   <Link
                     to={{ pathname: '/content' }}
-                    onClick={ this.handleClick.bind(this, database.name) }
+                    onClick={ addDatabase.bind(this, 'ola!', 500) }
                     replace
                   >
                     {database.name}
@@ -35,10 +35,5 @@ class Expander extends Component {
   }
 }
 
-const mapStateToProps = state => (state);
 
-const mapDispatchToProps = dispatch => ({
-  showDatabase: payload => dispatch(showDatabaseAction(payload)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Expander);
+export default Expander;

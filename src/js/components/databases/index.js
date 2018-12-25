@@ -35,12 +35,10 @@ class Databases extends Component {
     const { list } = this.props.database;
     const name = e.target['database_name'];
     const version = e.target['database_version'];
-    const data = { name: name.value, version: version.valueAsNumber };
-    const joinNames = [...list, data];
 
+    this.props.addDatabase(name.value, version.valueAsNumber);
     name.value = '';
     version.value = '';
-    this.props.addDatabase({ list: joinNames });
   }
 
   handleCopy(name) {}
@@ -103,7 +101,7 @@ class Databases extends Component {
 const mapStateToProps = state => (state);
 
 const mapDispatchToProps = dispatch => ({
-  addDatabase: payload => dispatch(addDatabaseAction(payload)),
+  addDatabase: (name, version) => dispatch(addDatabaseAction(name, version)),
   removeDatabase: payload => dispatch(removeDatabaseAction(payload)),
 });
 

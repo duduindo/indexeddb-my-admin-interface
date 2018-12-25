@@ -22,24 +22,23 @@ const defaultValue = {
 };
 
 
-function addDatabase(name, version) {
-  const data = {name, version};
-  const list = [...this.state.database.list, data];
-
-  this.setState({
-    database: {list}
-  });
-}
-
-
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {...defaultValue};
     this.actions = {
-      addDatabase: addDatabase.bind(this)
+      addDatabase: this.addDatabase.bind(this)
     };
+  }
+
+  addDatabase(name, version) {
+    const data = {name, version};
+    const list = [...this.state.database.list, data];
+
+    this.setState({
+      database: {list}
+    });
   }
 
   render() {

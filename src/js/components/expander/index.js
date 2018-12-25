@@ -5,8 +5,8 @@ import { showDatabaseAction } from '../../actions';
 
 
 class Expander extends Component {
-  handleClick(nameDatabase) {
-    this.props.showDatabase({ selected: nameDatabase });
+  handleClick(name, version) {
+    this.props.showDatabase(name, version);
   }
 
   render() {
@@ -21,7 +21,7 @@ class Expander extends Component {
                 <li key={key}>
                   <Link
                     to={{ pathname: '/content' }}
-                    onClick={ this.handleClick.bind(this, database.name) }
+                    onClick={ this.handleClick.bind(this, database.name, database.version) }
                     replace
                   >
                     {database.name}
@@ -38,7 +38,7 @@ class Expander extends Component {
 const mapStateToProps = state => (state);
 
 const mapDispatchToProps = dispatch => ({
-  showDatabase: payload => dispatch(showDatabaseAction(payload)),
+  showDatabase: (name, version) => dispatch(showDatabaseAction(name, version)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Expander);

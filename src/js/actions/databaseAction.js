@@ -3,12 +3,12 @@ export const addDatabaseAction = (name, version) => ({
   payload: { name, version },
 });
 
-export const removeDatabaseAction = payload => ({
+export const removeDatabaseAction = (name, version) => ({
   type: 'REMOVE_DATABASE',
-  payload,
+  payload: { name, version },
 });
 
-export const showDatabaseAction = payload => ({
+export const showDatabaseAction = (name, version) => ({
   type: 'SHOW_DATABASE',
-  payload,
+  payload: { name, version },
 });

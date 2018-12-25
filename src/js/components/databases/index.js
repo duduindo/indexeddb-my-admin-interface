@@ -23,11 +23,9 @@ class DababaseItem extends Component {
 class Databases extends Component {
   handleDelete(name, version) {
     const confirm = window.confirm('Are you sure?');
-    let { list } = this.props.database;
-    list = list.filter(database => !(database.name === name && database.version === version));
 
     if (confirm)
-      this.props.removeDatabase({ list });
+      this.props.removeDatabase(name, version);
   }
 
   handleSubmit(e) {
@@ -102,7 +100,7 @@ const mapStateToProps = state => (state);
 
 const mapDispatchToProps = dispatch => ({
   addDatabase: (name, version) => dispatch(addDatabaseAction(name, version)),
-  removeDatabase: payload => dispatch(removeDatabaseAction(payload)),
+  removeDatabase: (name, version) => dispatch(removeDatabaseAction(name, version)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Databases);

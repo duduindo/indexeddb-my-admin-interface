@@ -20,7 +20,7 @@ class Expander extends Component {
               return (
                 <li key={key}>
                   <Link
-                    to={{ pathname: '/content' }}
+                    to={{ pathname: '/stores' }}
                     onClick={ this.handleClick.bind(this, database.name, database.version) }
                     replace
                   >

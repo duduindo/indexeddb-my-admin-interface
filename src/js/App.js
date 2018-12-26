@@ -5,6 +5,7 @@ import Databases from './components/databases';
 import Expander from './components/expander';
 import Filter from './components/filter';
 import Header from './components/header';
+import Stores from './components/stores';
 import StatusResults from './components/statusResults';
 
 
@@ -26,6 +27,7 @@ class App extends Component {
 
           <main className="l-main">
             <Route exact path="/databases" component={Databases} />
+            <Route exact path="/stores" component={Stores} />
             <Route path="/content" component={Content} />
           </main>
         </div>

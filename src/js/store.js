@@ -43,10 +43,10 @@ const nullMiddleware = () => next => action => {
 const apiMiddleware = ({ dispatch }) => next => action => {
   next(action);
 
-  if (action.type !== 'API_EXTENSION')
+  if (action.type !== 'FETCH_INDEXEDDB_EXTENSION')
     return;
 
-  const { onSuccess, onFailure } = action.payload;
+  const { command, onSuccess, onFailure } = action.payload;
 
   window.indexedDBMySQL.getStoreNamesToArray()
     .then(stores => dispatch(onSuccess(stores)))

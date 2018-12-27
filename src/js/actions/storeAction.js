@@ -9,7 +9,7 @@ export const raiseAlarmAction = error => ({
 });
 
 export const fetchStoresAction = (name, version) => ({
-  type: 'API_EXTENSION',
+  type: 'FETCH_INDEXEDDB_EXTENSION',
   payload: {
     command: 'GET_STORES',
     name,

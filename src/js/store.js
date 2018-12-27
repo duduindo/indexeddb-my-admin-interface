@@ -2,6 +2,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { persistStore } from 'redux-persist';
 import rootReducer from './reducers/root';
 
+
 const initialState = {
   database: {
     list: [
@@ -27,7 +28,22 @@ const nullMiddleware = () => next => action => {
 };
 
 
-const store = createStore(rootReducer, initialState, applyMiddleware(nullMiddleware));
+const apiMiddleware = ({ dispatch }) => next => action => {
+  next(action);
+
+  if (action.type !== 'API')
+    return;
+
+  const { onSuccess, onFailure } = action.payload;
+
+  // Handle network requests
+  window.indexedDBMySQL.getStoreNamesToArray()
+    .then(stores => dispatch(onSuccess(stores)))
+    .catch(er => dispatch(onFailure(er)));
+};
+
+
+const store = createStore(rootReducer, initialState, applyMiddleware(nullMiddleware, apiMiddleware));
 const persistor = persistStore(store);
 
 

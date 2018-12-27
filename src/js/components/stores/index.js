@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import { } from '../../actions';
+import { fetchStoresAction } from '../../actions';
 
 class StoreItem extends Component {
   render() {
@@ -15,10 +15,14 @@ class StoreItem extends Component {
 
 
 class Stores extends Component {
-  render() {
-    const { list, selected } = this.props.database;
+  componentDidMount() {
+    const { selected } = this.props.database;
 
-    console.log(selected);
+    this.props.fetchStores(selected.name, selected.version);
+  }
+
+  render() {
+    const { list } = this.props.stores;
 
     return (
       <div>
@@ -31,13 +35,12 @@ class Stores extends Component {
           </thead>
           <tbody>
             {
-              list.map((database, key) => {
+              list.map((store, key) => {
                 return (
                   <StoreItem
                     key={key}
                     id={key}
-                    name={database.name}
-                    version={database.version}
+                    name={store.name}
                   />
                 );
               })
@@ -58,7 +61,9 @@ class Stores extends Component {
 
 const mapStateToProps = state => (state);
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  fetchStores: (name, version) => dispatch(fetchStoresAction(name, version)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Stores);
 

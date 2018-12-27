@@ -47,7 +47,7 @@ class Databases extends Component {
     return (
       <div>
         <div className="mb-4">
-          <h2 className="h6">Add database:</h2>
+          <h2 className="h6">Add database existed:</h2>
           <form action="." onSubmit={ this.handleSubmit.bind(this) } >
             <fieldset>
               <input className="small" placeholder="Name" minLength="1" type="text" name="database_name" required/> &nbsp;

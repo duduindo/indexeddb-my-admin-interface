@@ -18,9 +18,18 @@ const initialState = {
       name: 'database1',
       version: 2,
     },
+  },
+  stores: {
+    list: [
+      { name: 'reservations-test', owner: { name: 'database1', version: 2 }}
+    ]
   }
 };
 
+
+/**
+ * Middleware detected errors
+ */
 const nullMiddleware = () => next => action => {
   console.info('Middleware: ', action);
 
@@ -28,15 +37,17 @@ const nullMiddleware = () => next => action => {
 };
 
 
+/**
+ * Middleware sent command to Chrome's extension
+ */
 const apiMiddleware = ({ dispatch }) => next => action => {
   next(action);
 
-  if (action.type !== 'API')
+  if (action.type !== 'API_EXTENSION')
     return;
 
   const { onSuccess, onFailure } = action.payload;
 
-  // Handle network requests
   window.indexedDBMySQL.getStoreNamesToArray()
     .then(stores => dispatch(onSuccess(stores)))
     .catch(er => dispatch(onFailure(er)));

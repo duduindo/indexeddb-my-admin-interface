@@ -6,8 +6,10 @@ import {
 
 import {
   fetchStoresAction,
-  showStoresAction,
+  setStoresAction,
+  raiseAlarmAction,
 } from './storeAction';
+
 
 export {
   // Database
@@ -17,5 +19,6 @@ export {
 
   // Store
   fetchStoresAction,
-  showStoresAction,
+  setStoresAction,
+  raiseAlarmAction,
 }

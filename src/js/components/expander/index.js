@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { HashRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { showDatabaseAction, fetchStoresAction } from '../../actions';
 
 
 class Expander extends Component {
   handleClick(name, version) {
-    //this.props.showDatabase(name, version);
     this.props.fetchStores(name, version);
   }
 

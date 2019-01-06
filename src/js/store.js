@@ -2,10 +2,10 @@ import { createStore, applyMiddleware } from 'redux';
 import { persistStore } from 'redux-persist';
 import rootReducer from './reducers/root';
 
-
 const initialState = {
   database: {
     list: [
+      { name: 'gih-reservations', version: 2 },
       { name: 'database1', version: 2 },
       { name: 'database2', version: 2 },
       { name: 'database3', version: 2 },
@@ -15,13 +15,13 @@ const initialState = {
       { name: 'database_teste', version: 3 },
     ],
     selected: {
-      name: 'database1',
+      name: 'gih-reservations',
       version: 2,
     },
   },
   stores: {
     list: [
-      { name: 'reservations-test', owner: { name: 'database1', version: 2 }}
+      { name: 'reservations-test', owner: { name: 'gih-reservations', version: 2 }}
     ]
   }
 };
@@ -40,16 +40,19 @@ const nullMiddleware = () => next => action => {
 /**
  * Middleware sent command to Chrome's extension
  */
+const commands = new window.Commands;
+
+
 const apiMiddleware = ({ dispatch }) => next => action => {
   next(action);
 
   if (action.type !== 'FETCH_INDEXEDDB_EXTENSION')
     return;
 
-  const { command, onSuccess, onFailure } = action.payload;
+  const { command, data, onSuccess, onFailure } = action.payload;
 
-  window.indexedDBMySQL.getStoreNamesToArray()
-    .then(stores => dispatch(onSuccess(stores)))
+  commands.exec({ type: command, payload: data })
+    .then(data => dispatch(onSuccess(data)))
     .catch(er => dispatch(onFailure(er)));
 };
 

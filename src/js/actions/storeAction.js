@@ -3,6 +3,11 @@ export const setStoresAction = list => ({
   payload: { list },
 });
 
+export const setStoreValuesAction = list => ({
+  type: 'SET_STORE_VALUES',
+  payload: { list },
+});
+
 export const raiseAlarmAction = error => ({
   type: 'SHOW_RAISE_ALARM',
   payload: { error },
@@ -11,10 +16,26 @@ export const raiseAlarmAction = error => ({
 export const fetchStoresAction = (name, version) => ({
   type: 'FETCH_INDEXEDDB_EXTENSION',
   payload: {
-    command: 'GET_STORES',
-    name,
-    version,
+    command: 'GET_STORE_NAMES_TO_ARRAY',
     onSuccess: setStoresAction,
     onFailure: raiseAlarmAction,
+    data: {
+      name,
+      version,
+    },
+  },
+});
+
+export const fetchStoresValuesAction = (name, version, store) => ({
+  type: 'FETCH_INDEXEDDB_EXTENSION',
+  payload: {
+    command: 'GET_ALL_OBJECT_STORE',
+    onSuccess: setStoreValuesAction,
+    onFailure: raiseAlarmAction,
+    data: {
+      name,
+      version,
+      store,
+    },
   },
 });

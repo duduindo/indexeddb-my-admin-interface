@@ -6,6 +6,7 @@ import {
 
 import {
   fetchStoresAction,
+  fetchStoresValuesAction,
   setStoresAction,
   raiseAlarmAction,
 } from './storeAction';
@@ -19,6 +20,7 @@ export {
 
   // Store
   fetchStoresAction,
+  fetchStoresValuesAction,
   setStoresAction,
   raiseAlarmAction,
 }

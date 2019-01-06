@@ -3,9 +3,9 @@ export const setStoresAction = list => ({
   payload: { list },
 });
 
-export const setStoreValuesAction = list => ({
+export const setStoreValuesAction = values => ({
   type: 'SET_STORE_VALUES',
-  payload: { list },
+  payload: { values },
 });
 
 export const raiseAlarmAction = error => ({

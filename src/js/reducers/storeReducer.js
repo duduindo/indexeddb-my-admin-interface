@@ -13,7 +13,7 @@ export default (state = {}, action) => {
     case 'SET_STORE_VALUES':
       return {
         ...state,
-        ///list: action.payload.list.map(name => ({ name })),
+        values: { ...action.payload.values },
       };
 
     default:

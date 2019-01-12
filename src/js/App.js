@@ -6,6 +6,8 @@ import Expander from './components/expander';
 import Filter from './components/filter';
 import Header from './components/header';
 import StatusResults from './components/statusResults';
+import Stores from './components/stores';
+import StoreValues from './components/storeValues';
 
 
 class App extends Component {
@@ -26,6 +28,8 @@ class App extends Component {
 
           <main className="l-main">
             <Route exact path="/databases" component={Databases} />
+            <Route exact path="/stores" component={Stores} />
+            <Route exact path="/store-values" component={StoreValues} />
             <Route path="/content" component={Content} />
           </main>
         </div>

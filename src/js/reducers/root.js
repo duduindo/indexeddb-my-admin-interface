@@ -1,6 +1,7 @@
 import { persistCombineReducers } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'
 import databaseReducer from './databaseReducer';
+import storeReducer from './storeReducer';
 
 /**
  * Documentation of 'whitelist' and 'blacklist'
@@ -14,4 +15,5 @@ const config = {
 
 export default persistCombineReducers(config, {
   database: databaseReducer,
+  stores: storeReducer,
 });

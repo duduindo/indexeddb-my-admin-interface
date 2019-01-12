@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { HashRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { showDatabaseAction } from '../../actions';
+import { showDatabaseAction, fetchStoresAction } from '../../actions';
 
 
 class Expander extends Component {
   handleClick(name, version) {
-    this.props.showDatabase(name, version);
+    this.props.fetchStores(name, version);
   }
 
   render() {
@@ -20,7 +20,7 @@ class Expander extends Component {
               return (
                 <li key={key}>
                   <Link
-                    to={{ pathname: '/content' }}
+                    to={{ pathname: '/stores' }}
                     onClick={ this.handleClick.bind(this, database.name, database.version) }
                     replace
                   >
@@ -39,6 +39,7 @@ const mapStateToProps = state => (state);
 
 const mapDispatchToProps = dispatch => ({
   showDatabase: (name, version) => dispatch(showDatabaseAction(name, version)),
+  fetchStores: (name, version) => dispatch(fetchStoresAction(name, version)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Expander);

@@ -44,7 +44,7 @@ gulp.task('css', () =>
 
 gulp.task('server', ['css', 'js'], () => {
   browserSync.init({
-    port: 3001,
+    port: 8443,
     server: "./",
     open: false,
     files: [

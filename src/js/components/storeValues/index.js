@@ -9,13 +9,10 @@ class StoreItem extends Component {
       <tr>
         <th scope="row">{this.props.id}</th>
         <td>
-          <Link
-            to={{ pathname: '/store-values' }}
-            onClick={ this.props.handleClick }
-            replace
-          >
-            {this.props.storeName}
-          </Link>
+          {this.props.valueKey}
+        </td>
+        <td>
+          {this.props.value}
         </td>
       </tr>
     );
@@ -37,10 +34,7 @@ class StoreValues extends Component {
   }
 
   render() {
-    const { list, values } = this.props.stores;
-
-    console.log('List: ', list);
-    console.log('Values: ', values);
+    const { values = {keys: [], values: []} } = this.props.stores;
 
     return (
       <div>
@@ -48,18 +42,21 @@ class StoreValues extends Component {
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Name</th>
+              <th scope="col">Key <small>(Key path: "id")</small></th>
+              <th scope="col">Value</th>
             </tr>
           </thead>
           <tbody>
             {
-              list.map((store, key) => {
+              values.keys.map((item, key) => {
+                const value = JSON.stringify(values.values[key]);
+
                 return (
                   <StoreItem
                     key={key}
                     id={key}
-                    storeName={store.name}
-                    handleClick={ this.handleClick.bind(this, store.name) }
+                    valueKey={item}
+                    value={value}
                   />
                 );
               })
@@ -68,7 +65,7 @@ class StoreValues extends Component {
           <tfoot>
             <tr>
               <td></td>
-              <td colSpan="4"><strong>Total: { list.length }</strong></td>
+              <td colSpan="4"><strong>Total: { values.keys.length }</strong></td>
             </tr>
           </tfoot>
         </table>

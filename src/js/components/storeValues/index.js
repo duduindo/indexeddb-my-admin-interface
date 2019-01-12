@@ -34,7 +34,7 @@ class StoreValues extends Component {
   }
 
   render() {
-    const { values = {keys: [], values: []} } = this.props.stores;
+    const { values = {keyPath: '', keys: [], values: []} } = this.props.stores;
 
     return (
       <div>
@@ -42,7 +42,7 @@ class StoreValues extends Component {
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Key <small>(Key path: "id")</small></th>
+              <th scope="col">Key <small><i>(Key path: "{values.keyPath}")</i></small></th>
               <th scope="col">Value</th>
             </tr>
           </thead>

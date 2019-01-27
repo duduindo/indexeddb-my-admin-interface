@@ -18,12 +18,13 @@ const initialState = {
       name: 'gih-reservations',
       version: 2,
     },
+    tree: []
   },
   stores: {
     list: [
       { name: 'reservations-test', owner: { name: 'gih-reservations', version: 2 }}
-    ]
-  }
+    ],
+  },
 };
 
 

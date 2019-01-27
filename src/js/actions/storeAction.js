@@ -8,11 +8,10 @@ export const setStoreValuesAction = values => ({
   payload: { values },
 });
 
-export const raiseAlarmAction = error => ({
-  type: 'SHOW_RAISE_ALARM',
-  payload: { error },
-});
 
+// --------------------------------------------------
+// Fetch
+// --------------------------------------------------
 export const fetchStoresAction = (name, version) => ({
   type: 'FETCH_INDEXEDDB_EXTENSION',
   payload: {

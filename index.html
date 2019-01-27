@@ -12,12 +12,11 @@
 <body>
   <div id="root"></div>
 
-
   <script>
     const NAME = 'gih-reservations';
     const VERSION = 2;
 
-    class IndexedDBAdmin {
+class IndexedDBAdmin {
   constructor(name, version) {
     this.name = name;
     this.version = version;
@@ -78,6 +77,14 @@
   }
 
   // @public
+  async getIndexesFromObjectStore(name) {
+    const objectStore = await this.objectStore(name);
+    const names = Array.from(objectStore.indexNames);
+
+    return names;
+  }
+
+  // @public
   async getAllFromObjectStore(name) {
     const { keyPath } = await this.objectStore(name);
     const keys = await this.getAllKeysFromObjectStore(name);
@@ -86,6 +93,25 @@
     return {keyPath, keys, values};
   }
 
+  // @public
+  async getDatabaseTree() {
+    const storeNames = await this.getStoreNamesToArray();
+    const database = { name: this.name, version: this.version, stores: [] };
+    let tree = [];
+
+    tree = storeNames.map(async store => {
+      const indexes = await this.getIndexesFromObjectStore(store);
+
+      return {
+        name: store,
+        indexes: indexes
+      };
+    });
+
+    database.stores = await Promise.all(tree);
+
+    return database;
+  }
 
   // @public
   async getCursors(name) {
@@ -125,6 +151,10 @@ class Commands {
         return request.getAllFromObjectStore(payload.store);
         break;
 
+      case 'GET_DATABASE_TREE':
+        return request.getDatabaseTree(payload.store);
+        break;
+
       default:
         return 'Error';
     }
@@ -135,7 +165,7 @@ class Commands {
       try {
         return await this.reducer(action);
       } catch(err) {
-        console.warn(err);
+        console.error(err);
       }
     }
   }

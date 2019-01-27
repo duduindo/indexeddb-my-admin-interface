@@ -1,4 +1,8 @@
 export default (state = {}, action) => {
+
+  if (action.type === '## SET_DATABASE_TREE')
+    console.warn('database: ', state.tree);
+
   switch (action.type) {
     case 'ADD_DATABASE':
       return {
@@ -21,6 +25,12 @@ export default (state = {}, action) => {
       return {
         ...state,
         selected: action.payload,
+      };
+
+    case 'SET_DATABASE_TREE':
+      return {
+        ...state,
+        tree: [...state.tree, action.payload.database]
       };
 
     default:

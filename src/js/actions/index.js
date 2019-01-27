@@ -1,5 +1,6 @@
 import {
   addDatabaseAction,
+  fetchDatabaseTreeAction,
   removeDatabaseAction,
   showDatabaseAction,
 } from './databaseAction';
@@ -15,6 +16,7 @@ import {
 export {
   // Database
   addDatabaseAction,
+  fetchDatabaseTreeAction,
   removeDatabaseAction,
   showDatabaseAction,
 

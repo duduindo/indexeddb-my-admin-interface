@@ -1,8 +1,4 @@
 export default (state = {}, action) => {
-
-  if (action.type === 'SET_STORE_VALUES')
-    console.warn(action);
-
   switch (action.type) {
     case 'SET_STORES':
       return {

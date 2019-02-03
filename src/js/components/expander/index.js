@@ -34,7 +34,7 @@ class Expander extends Component {
               return (
                 <li key={indexDatabase}>
                   <button onClick={ e => this.handleExpanse(e) } className={ (database.stores.length) ? '' : 'd-none' }>+</button> &nbsp;
-                  <a href="#">{database.name}</a>
+                  {database.name}
 
                   <ul className="d-none">
                     {
@@ -42,7 +42,9 @@ class Expander extends Component {
                         return (
                           <li key={indexStore}>
                             <button onClick={ e => this.handleExpanse(e) } className={ (store.indexes.length) ? '' : 'd-none' }>+</button> &nbsp;
-                            <a href="#">{store.name}</a>
+                            <Link to={{ pathname: `/store-list/${database.name}/${database.version}/${store.name}/` }} replace>
+                              {store.name}
+                            </Link>
 
                             <ul className="d-none">
                               {

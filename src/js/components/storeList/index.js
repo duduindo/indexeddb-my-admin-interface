@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchStoresAction, fetchStoresValuesAction } from '../../actions';
+import { fetchStoresValuesAction } from '../../actions';
 
 class StoreItem extends Component {
   render() {
@@ -20,17 +20,21 @@ class StoreItem extends Component {
 }
 
 
-class StoreValues extends Component {
+class StoreList extends Component {
   componentDidMount() {
-    const { selected } = this.props.database;
-
-    this.props.fetchStores(selected.name, selected.version);
+    this.handleLoad(this.props.match.params);
   }
 
-  handleClick(storeName) {
-    const { selected } = this.props.database;
+  UNSAFE_componentWillUpdate(nextProps) {
+    if (nextProps.location.pathname !== this.props.location.pathname) {
+      this.handleLoad(nextProps.match.params);
+    }
+  }
 
-    this.props.fetchStoresValues(selected.name, selected.version, storeName);
+  handleLoad(params) {
+    const { database = '', version = 0, store = '' } = params;
+
+    this.props.fetchStoresValues(database, version, store);
   }
 
   render() {
@@ -78,10 +82,9 @@ class StoreValues extends Component {
 const mapStateToProps = state => (state);
 
 const mapDispatchToProps = dispatch => ({
-  fetchStores: (name, version) => dispatch(fetchStoresAction(name, version)),
   fetchStoresValues: (name, version, storeName) => dispatch(fetchStoresValuesAction(name, version, storeName)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(StoreValues);
+export default connect(mapStateToProps, mapDispatchToProps)(StoreList);
 
 

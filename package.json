@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.1.3",
+    "indexeddb-my-admin-commands": "github:duduindo/indexeddb-my-admin-commands#develop",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-redux": "^6.0.0",

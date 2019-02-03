@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware } from 'redux';
 import { persistStore } from 'redux-persist';
 import rootReducer from './reducers/root';
+import Commands from 'indexeddb-my-admin-commands';
 
 const initialState = {
   database: {
@@ -41,7 +42,7 @@ const nullMiddleware = () => next => action => {
 /**
  * Middleware sent command to Chrome's extension
  */
-const commands = new window.Commands;
+const commands = new Commands;
 
 
 const apiMiddleware = ({ dispatch }) => next => action => {

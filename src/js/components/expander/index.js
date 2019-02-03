@@ -11,6 +11,16 @@ class Expander extends Component {
 
   componentDidMount() {
     this.props.fetchTree('gih-reservations', 2, 'reservations');
+    this.props.fetchTree('database1', 2, 'reservations');
+  }
+
+  handleExpanse(e) {
+    const button = e.target;
+    const list = button.parentElement.querySelector('ul');
+    const isHidden = list.classList.contains('d-none');
+
+    button.textContent = (isHidden) ? '-' : '+';
+    list.classList.toggle('d-none');
   }
 
   render() {
@@ -23,21 +33,23 @@ class Expander extends Component {
             tree.map((database, indexDatabase) => {
               return (
                 <li key={indexDatabase}>
-                  <button>+</button> {database.name}
+                  <button onClick={ e => this.handleExpanse(e) } className={ (database.stores.length) ? '' : 'd-none' }>+</button> &nbsp;
+                  <a href="#">{database.name}</a>
 
-                  <ul>
+                  <ul className="d-none">
                     {
                       database.stores.map((store, indexStore) => {
                         return (
                           <li key={indexStore}>
-                            <button>+</button> {store.name}
+                            <button onClick={ e => this.handleExpanse(e) } className={ (store.indexes.length) ? '' : 'd-none' }>+</button> &nbsp;
+                            <a href="#">{store.name}</a>
 
-                            <ul>
+                            <ul className="d-none">
                               {
                                 store.indexes.map((index, i) => {
                                   return (
                                     <li key={i}>
-                                      <button>+</button> {index}
+                                      <a href="#">{index}</a>
                                     </li>
                                   );
                                 })
